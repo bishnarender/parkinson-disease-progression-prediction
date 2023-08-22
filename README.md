@@ -50,7 +50,17 @@ Feature <b>=></b> sample['visit_0m'].
 sample["visit_0m"] = sample.apply(lambda x: (x["patient_id"] in p) and (x["visit_month"] >= 0), axis=1).astype(int)
 #- 1 when visit_month values are equal to or greater than 0 (i.e., 0th month).
 </code>
-Similarly, other related features ['visit_6m', 'visit_12m', ..., 'visit_84m'] are calculated. Indicators whether a patient visit occurred on 6th, 12th, ... and 84th month.
+Similarly, other related features ['visit_6m', 'visit_12m', ..., 'visit_84m'] are calculated. These are indicators whether a patient visit occurred on 6th, 12th, ... and 84th month.
+
+<b>updrs_2 and updrs_3 are strongly correlated. And, only certain "months visits" (visit_6m, visit_18m, visit_48m, ...) have shown positive correlation with these two features. These correlations are a game changer.</b>
+<code>
+clinical = pd.read_csv(f"amp-parkinsons-disease-progression-prediction/train_clinical_data.csv")
+onehot_df = pd.get_dummies(clinical[clinical["visit_month"].isin([0, 6, 12, 18, 24, 36, 48, 60, 72, 84])]["visit_month"], prefix='visit_month', dtype=float)
+clinical= pd.concat([clinical[["updrs_1","updrs_2","updrs_3","updrs_4"]], onehot_df], axis=1)
+
+fig, ax = plt.subplots(figsize=(12,10))
+sns.heatmap(clinical.corr(), annot=True, fmt=".2f")
+</code>
 
 Feature <b>=></b> sample['t_month_eq_0']. 
 <code>
