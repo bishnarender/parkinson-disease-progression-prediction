@@ -42,6 +42,7 @@ sample["horizon"] = sample["target_month"] - sample["visit_month"]
 </code>
 Now keep those rows for which ["horizon"] feature is in [0, 6, 12, 24]. This keeps only those visit_month which are less than target_month.
 Further, this also keeps those visit_month (for a particular target_month) which are not later than 24 months with a gap of 6 or 12 months​.
+
 ![horizon_effect](https://github.com/bishnarender/parkinson-disease-progression-prediction/assets/49610834/ebf16e84-6601-47b5-ac57-5ae1acf8a554)
 
 Feature <b>=></b> sample['visit_0m']. 
