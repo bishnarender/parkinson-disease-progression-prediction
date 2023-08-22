@@ -57,7 +57,6 @@ Similarly, other related features ['visit_6m', 'visit_12m', ..., 'visit_84m'] ar
 clinical = pd.read_csv(f"amp-parkinsons-disease-progression-prediction/train_clinical_data.csv")
 onehot_df = pd.get_dummies(clinical[clinical["visit_month"].isin([0, 6, 12, 18, 24, 36, 48, 60, 72, 84])]["visit_month"], prefix='visit_month', dtype=float)
 clinical= pd.concat([clinical[["updrs_1","updrs_2","updrs_3","updrs_4"]], onehot_df], axis=1)
-
 fig, ax = plt.subplots(figsize=(12,10))
 sns.heatmap(clinical.corr(), annot=True, fmt=".2f")
 </code>
