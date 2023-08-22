@@ -12,6 +12,8 @@ For better understanding of project, read the files in the following order:
 
 <b>Final solution is a ensemble of two models: LGB and NN.</b>
 
+Model is trained during runtime since this is a time-series code competition: ​and we have to predict present and forecast later scores.
+
 ### Features
 -----
 Train/sample DataFrame build up.
