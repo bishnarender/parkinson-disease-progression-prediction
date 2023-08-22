@@ -42,6 +42,7 @@ sample["horizon"] = sample["target_month"] - sample["visit_month"]
 </code>
 Now keep those rows for which ["horizon"] feature is in [0, 6, 12, 24]. This keeps only those visit_month which are less than target_month.
 Further, this also keeps those visit_month (for a particular target_month) which are not later than 24 months with a gap of 6 or 12 months​.
+![horizon_effect](https://github.com/bishnarender/parkinson-disease-progression-prediction/assets/49610834/ebf16e84-6601-47b5-ac57-5ae1acf8a554)
 
 Feature <b>=></b> sample['visit_0m']. 
 <code>
@@ -78,3 +79,19 @@ sample["target_n_1"] = (sample["target_i"] == 1).astype(int)
 #- 1 when target_i values are equal to 1 (i.e., updrs_1).
 </code>
 Similarly, other related features ['target_n_2', 'target_n_3', 'target_n_4'] are calculated.
+
+### NN Model
+-----
+![nn_model](https://github.com/bishnarender/parkinson-disease-progression-prediction/assets/49610834/4125854a-71ac-4564-88a7-f871385b753c)
+
+#### What is SMAPE ?
+-----
+Symmetric Mean Absolute Percentage Error (SMAPE), which is an accuracy measure commonly used in <b>forecasting and time series analysis</b>.
+
+![smape](https://github.com/bishnarender/parkinson-disease-progression-prediction/assets/49610834/18de7a2c-32af-4b20-afc5-6a9d5a72ec74)
+
+Given the actual values y and the predicted values y_hat, the SMAPE is calculated as the average of the absolute percentage errors between the two, where each error is weighted by the sum of the absolute values of the actual and predicted values. It is often multiplied by 100% to obtain the percentage error.
+
+SMAPE is designed to address some of the limitations of other error metrics like Mean Absolute Percentage Error (MAPE), which can be problematic when dealing with small or zero actual values.
+
+One of the notable features of SMAPE is that it treats positive and negative errors symmetrically, meaning that overestimations and underestimations are treated equally. During both these conditions SMAPE is greater than 0.
